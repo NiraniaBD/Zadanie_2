@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.geom.RectangularShape;
-public class Fill implements FillBehavior {
+public class Fill implements FillBehavior, Cloneable {
 
     private Color color;
     private RectangularShape shape;
@@ -27,4 +27,10 @@ public class Fill implements FillBehavior {
         shape = s;
     }
 
+    @Override
+    public FillBehavior clone() {
+        Fill fill = new Fill();
+        fill.color = color;
+        return fill;
+    }
 }

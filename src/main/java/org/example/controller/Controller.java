@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.controller.action.ActionDraw;
 import org.example.model.Model;
 import org.example.model.MyShape;
 import org.example.model.fill.NoFill;
@@ -21,10 +22,13 @@ public class Controller {
     private Point2D [] pd;
     private MyShape shape;
 
+    private ActionDraw actionDraw;
+
     @PostConstruct
     public void init() {
-        shape = new MyShape(Color.CYAN, new Rectangle2D.Double(), new NoFill());
-
+        shape = new MyShape(Color.BLACK, new Rectangle2D.Double(), new NoFill());
+        actionDraw.setSampleShape(shape);
+        actionDraw.setShape(shape);
         model.addObserver(panel);
         frame.setPanel(panel);
 
@@ -43,6 +47,15 @@ public class Controller {
         model.draw(g2);
     }
 
+    public void mousePressed(Point point){
+        actionDraw.createShape(point);
+    }
+
+    public void mouseDragged(Point point){
+        actionDraw.stretchShape(point);
+    }
+
+
     @Autowired
     public void setModel(Model model) {
         this.model = model;
@@ -54,5 +67,9 @@ public class Controller {
     @Autowired
     public void setPanel(MyPanel panel) {
         this.panel = panel;
+    }
+    @Autowired
+    public void setActionDraw(ActionDraw actionDraw) {
+        this.actionDraw = actionDraw;
     }
 }

@@ -26,4 +26,11 @@ public class NoFill implements FillBehavior {
     public void serShape(RectangularShape s) {
         shape = s;
     }
+
+    @Override
+    public FillBehavior clone() {
+        NoFill noFill = new NoFill();
+        noFill.color = color;
+        return noFill;
+    }
 }

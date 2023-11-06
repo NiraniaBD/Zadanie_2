@@ -28,13 +28,14 @@ public class MyPanel extends JPanel implements Observer {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent arg0) {
-                controller.getPointOne(arg0.getPoint());
+                controller.mousePressed(arg0.getPoint());
             }
         });
         addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent arg0) {
-                controller.getPointTwo(arg0.getPoint());
+                controller.mouseDragged(arg0.getPoint());
+                repaint();
             }
         });
     }
@@ -44,8 +45,6 @@ public class MyPanel extends JPanel implements Observer {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         controller.draw(g2);
-
-
     }
 
     @Override
