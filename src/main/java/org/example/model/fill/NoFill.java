@@ -9,9 +9,6 @@ public class NoFill implements FillBehavior {
     private Color color;
     private RectangularShape shape;
 
-    public NoFill() {
-    }
-
     @Override
     public void setColor(Color color) {
         this.color = color;

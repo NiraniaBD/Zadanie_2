@@ -5,29 +5,27 @@ import org.example.model.MyShape;
 import org.example.model.fill.NoFill;
 import org.example.view.MyFrame;
 import org.example.view.MyPanel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+@Component
 public class Controller {
     private Model model;
     private MyFrame frame;
     private MyPanel panel;
     private Point2D [] pd;
     private MyShape shape;
-    public Controller() {
-        model = new Model();
-        shape = new MyShape(new Rectangle2D.Double());
-        shape.setFb(new NoFill());
-        model.setMyShape(shape);
 
-        panel = new MyPanel();
-        panel.setController(this);
+    @PostConstruct
+    public void init() {
+        shape = new MyShape(Color.CYAN, new Rectangle2D.Double(), new NoFill());
 
         model.addObserver(panel);
-
-        frame = new MyFrame();
         frame.setPanel(panel);
 
         pd = new Point2D[2];
@@ -41,6 +39,20 @@ public class Controller {
     }
 
     public void draw(Graphics2D g2) {
+        model.setMyShape(shape);
         model.draw(g2);
+    }
+
+    @Autowired
+    public void setModel(Model model) {
+        this.model = model;
+    }
+    @Autowired
+    public void setFrame(MyFrame frame) {
+        this.frame = frame;
+    }
+    @Autowired
+    public void setPanel(MyPanel panel) {
+        this.panel = panel;
     }
 }

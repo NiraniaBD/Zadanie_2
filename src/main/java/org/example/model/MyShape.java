@@ -14,6 +14,14 @@ public class MyShape {
     private RectangularShape shape;
     private FillBehavior fb;
 
+    public void setShape(RectangularShape shape) {
+        this.shape = shape;
+    }
+
+    public void setFrame(Point2D[] pd) {
+        shape.setFrameFromDiagonal(pd[0], pd[1]);
+    }
+
     public MyShape(RectangularShape shape) {
         this.shape = shape;
         color = Color.GRAY;
@@ -43,15 +51,6 @@ public class MyShape {
         fb.serShape(shape);
         fb.setColor(color);
     }
-
-    public void setShape(RectangularShape shape) {
-        this.shape = shape;
-    }
-
-    public void setFrame(Point2D[] pd) {
-        shape.setFrameFromDiagonal(pd[0], pd[1]);
-    }
-
     void draw(Graphics2D g) {
         fb.draw(g);
 

@@ -1,14 +1,14 @@
 package org.example.model;
 
+import org.springframework.stereotype.Component;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.Observable;
 
+@Component
 public class Model extends Observable {
     private MyShape currentShape;
-
-    public Model() {
-    }
 
     public void setMyShape(MyShape myShape) {
         this.currentShape = myShape;
