@@ -31,6 +31,7 @@ public class Controller {
         actionDraw.setShape(shape);
         model.addObserver(panel);
         frame.setPanel(panel);
+        frame.setJMenuBar(menuController.getMenuBar());
 
         pd = new Point2D[2];
     }
@@ -54,7 +55,6 @@ public class Controller {
     public void mouseDragged(Point point){
         actionDraw.stretchShape(point);
     }
-
 
     @Autowired
     public void setModel(Model model) {

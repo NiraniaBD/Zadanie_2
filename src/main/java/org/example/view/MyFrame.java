@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 @Component
 public class MyFrame extends JFrame {
