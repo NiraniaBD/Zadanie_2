@@ -1,7 +1,7 @@
 package org.example.model;
 
-import org.example.model.fill.Fill;
-import org.example.model.fill.FillBehavior;
+import org.example.model.shape.factory.fill.Fill;
+import org.example.model.shape.factory.fill.FillBehavior;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

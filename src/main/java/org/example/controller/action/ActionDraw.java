@@ -18,7 +18,6 @@ public class ActionDraw {
 
     @PostConstruct
     public void init() {
-        shape = new MyShape();
         p = new Point2D[2];
     }
 

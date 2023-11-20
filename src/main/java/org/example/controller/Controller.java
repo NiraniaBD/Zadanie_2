@@ -3,7 +3,9 @@ package org.example.controller;
 import org.example.controller.action.ActionDraw;
 import org.example.model.Model;
 import org.example.model.MyShape;
-import org.example.model.fill.NoFill;
+import org.example.model.shape.factory.ShapeType;
+import org.example.model.shape.factory.fill.Fill;
+import org.example.model.shape.factory.fill.NoFill;
 import org.example.view.MyFrame;
 import org.example.view.MyPanel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +26,19 @@ public class Controller {
 
     private ActionDraw actionDraw;
 
+    private MenuController menuController;
+
+
+
     @PostConstruct
     public void init() {
-        shape = new MyShape(Color.BLACK, new Rectangle2D.Double(), new NoFill());
+        shape = ShapeType.RECTANGULAR.createShape(Color.BLACK, new NoFill());
         actionDraw.setSampleShape(shape);
         actionDraw.setShape(shape);
         model.addObserver(panel);
         frame.setPanel(panel);
-        frame.setJMenuBar(menuController.getMenuBar());
-
+        frame.setJMenuBar(menuController.getMenu());
+        frame.revalidate();
         pd = new Point2D[2];
     }
     public void getPointOne(Point2D p){
@@ -71,5 +77,10 @@ public class Controller {
     @Autowired
     public void setActionDraw(ActionDraw actionDraw) {
         this.actionDraw = actionDraw;
+    }
+
+    @Autowired
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
     }
 }
