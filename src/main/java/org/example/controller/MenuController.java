@@ -1,6 +1,5 @@
 package org.example.controller;
 
-import org.example.model.MyShape;
 import org.example.model.shape.factory.ShapeType;
 import org.example.model.shape.factory.fill.FillBehavior;
 import org.springframework.stereotype.Component;
@@ -31,6 +30,7 @@ public class MenuController {
         JMenu shapeMenu = new JMenu("Фигура");
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem square = new JRadioButtonMenuItem("Прямоугольник");
+        square.addActionListener(new MenuObserver());
         //square.addActionListener(e -> selectedShape = ShapeType.RECTANGULAR);
         shapeMenu.add(square);
         group.add(square);
@@ -84,6 +84,7 @@ public class MenuController {
 
         return shapeMenu;
     }
+
 
     public JMenuBar getMenu() {
         return menu;

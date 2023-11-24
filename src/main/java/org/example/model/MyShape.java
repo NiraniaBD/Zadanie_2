@@ -23,13 +23,13 @@ public class MyShape implements Cloneable {
         shape.setFrameFromDiagonal(pd[0], pd[1]);
     }
 
-    public MyShape(RectangularShape shape) {
-        this.shape = shape;
-        color = Color.GRAY;
-        fb = new Fill();
-        fb.setColor(color);
-        fb.serShape(shape);
-    }
+//    public MyShape(RectangularShape shape) {
+//        this.shape = shape;
+//        color = Color.GRAY;
+//        fb = new Fill();
+//        fb.setColor(color);
+//        fb.serShape(shape);
+//    }
 
     public MyShape() {
         color = Color.BLUE;
@@ -55,7 +55,6 @@ public class MyShape implements Cloneable {
 
     void draw(Graphics2D g) {
         fb.draw(g);
-
     }
 
     @Override
