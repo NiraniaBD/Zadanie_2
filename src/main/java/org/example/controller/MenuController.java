@@ -1,12 +1,16 @@
 package org.example.controller;
 
+import org.example.model.MyShape;
 import org.example.model.shape.factory.ShapeType;
+import org.example.model.shape.factory.fill.Fill;
 import org.example.model.shape.factory.fill.FillBehavior;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 //import static jdk.nio.zipfs.ZipFileAttributeView.AttrID.group;
 
@@ -14,6 +18,10 @@ import java.awt.*;
 public class MenuController {
 
     JMenuBar menu;
+
+    private ShapeType selectedShape;
+    private Color selectedColor;
+    private  FillBehavior selectedFill;
 
     @PostConstruct
     public void init() {
@@ -30,7 +38,12 @@ public class MenuController {
         JMenu shapeMenu = new JMenu("Фигура");
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem square = new JRadioButtonMenuItem("Прямоугольник");
-        square.addActionListener(new MenuObserver());
+        square.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
         //square.addActionListener(e -> selectedShape = ShapeType.RECTANGULAR);
         shapeMenu.add(square);
         group.add(square);
@@ -51,7 +64,17 @@ public class MenuController {
         JMenu shapeMenu = new JMenu("Заливка");
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem zalivka = new JRadioButtonMenuItem("Есть заливка");
-        //zalivka.addActionListener(e -> selectedFill = ShapeFill.NoFill);
+        zalivka.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedFill = new Fill();
+                selectedFill.setColor(selectedColor);
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                MenuObserver.notifyAllSubscribers();
+            }
+        });
+
         shapeMenu.add(zalivka);
         group.add(zalivka);
         JRadioButtonMenuItem netZalivki = new JRadioButtonMenuItem("Нет заливки");

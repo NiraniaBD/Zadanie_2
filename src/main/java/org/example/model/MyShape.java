@@ -67,4 +67,9 @@ public class MyShape implements Cloneable {
         clone.fb.serShape(anotherShape);
         return clone;
     }
+
+
+    public RectangularShape getShape() {
+        return shape;
+    }
 }

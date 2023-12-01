@@ -6,10 +6,26 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MenuObserver implements ActionListener {
+import java.util.HashSet;
+import java.util.Set;
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
+
+public class MenuObserver {
+    Set<ActionListener> listenerSet = new HashSet<>();
+
+    void subscribe(ActionListener listener){
+            listenerSet.add(listener);
+    }
+    void unsubscribe(ActionListener listener){
+            listenerSet.remove(listener);
+    }
+
+    void notifyAllObservers(String data){
+            for (ActionListener event: listenerSet) {
+                event.notify();
+            }
 
     }
+
+
 }
