@@ -21,7 +21,6 @@ public class MenuController {
     private ShapeType selectedShape;
     private Color selectedColor;
     private  FillBehavior selectedFill;
-
     private MenuObserver menuObserver;
     private UndoMachine undoMachine;
 

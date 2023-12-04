@@ -92,10 +92,6 @@ public class Controller implements MenuSubscriber {
 
     @Override
     public void notifyUpdate() {
-        //this.shape = shapeState.createShape();
-        //shape = ShapeType.RECTANGULAR.createShape(Color.BLACK, new NoFill());
-        //selectedShape selectedColor selectedColor
-
         ShapeType selectedShape = menuController.getSelectedShape();
         Color selectedColor = menuController.getSelectedColor();
         FillBehavior selectedFill = menuController.getSelectedFill();
