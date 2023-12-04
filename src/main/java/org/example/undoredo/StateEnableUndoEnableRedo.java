@@ -26,7 +26,15 @@ public class StateEnableUndoEnableRedo extends UndoRedoState{
 
     @Override
     public UndoRedoState redo() {
-        return null;
+        LinkedList<MyAction> activityList = getActivityList();
+        LinkedList<MyAction> redoActivityList = getRedoActivityList();
+        MyAction action = redoActivityList.pollLast();
+        if (action != null) {
+            activityList.add(action);
+        }
+        return redoActivityList.size() > 0
+                ? this
+                : new StateEnableUndoDisableRedo(getActivityList(), getRedoActivityList());
     }
 
     @Override
