@@ -13,16 +13,16 @@ import java.util.Set;
 @Component
 public class MenuObserver {
 
-    private static final Set<MenuSubscriber> listenerSet = new HashSet<>();
+    private final Set<MenuSubscriber> listenerSet = new HashSet<>();
 
-    void subscribe(MenuSubscriber listener){
+    public void subscribe(MenuSubscriber listener){
             listenerSet.add(listener);
     }
-    void unsubscribe(MenuSubscriber listener){
+    public void unsubscribe(MenuSubscriber listener){
             listenerSet.remove(listener);
     }
 
-    static void notifyAllSubscribers(){
+    public void notifyAllSubscribers(){
             for (MenuSubscriber event : listenerSet) {
                 event.notifyUpdate();
             }

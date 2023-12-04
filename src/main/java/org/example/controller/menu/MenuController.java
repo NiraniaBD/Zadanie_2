@@ -4,6 +4,8 @@ import org.example.model.MyShape;
 import org.example.model.shape.factory.ShapeType;
 import org.example.model.shape.factory.fill.Fill;
 import org.example.model.shape.factory.fill.FillBehavior;
+import org.example.model.shape.factory.fill.NoFill;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -11,8 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-//import static jdk.nio.zipfs.ZipFileAttributeView.AttrID.group;
 
 @Component
 public class MenuController {
@@ -23,6 +23,8 @@ public class MenuController {
     private Color selectedColor;
     private  FillBehavior selectedFill;
 
+    private MenuObserver menuObserver;
+
     @PostConstruct
     public void init() {
         menu = new JMenuBar();
@@ -32,28 +34,30 @@ public class MenuController {
         menu.add(shapeMenu);
         menu.add(colorMenu);
         menu.add(fillMenu);
+
+        defaultState();
+    }
+
+    private void defaultState() {
+        selectedShape = ShapeType.ELLIPSE;
+        selectedColor = Color.BLACK;
+        selectedFill = new NoFill();
     }
 
     private JMenu createShapeMenu() {
         JMenu shapeMenu = new JMenu("Фигура");
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem square = new JRadioButtonMenuItem("Прямоугольник");
-        square.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-
-            }
-        });
-        //square.addActionListener(e -> selectedShape = ShapeType.RECTANGULAR);
+        square.addActionListener(e -> selectedShape = ShapeType.RECTANGULAR);
         shapeMenu.add(square);
         group.add(square);
         JRadioButtonMenuItem ellipse = new JRadioButtonMenuItem("Эллипс");
-        //ellipse.addActionListener(e -> selectedShape = ShapeType.ELLIPSE);
+        ellipse.addActionListener(e -> selectedShape = ShapeType.ELLIPSE);
         shapeMenu.add(ellipse);
         group.add(ellipse);
         JRadioButtonMenuItem roundRectangular = new
                 JRadioButtonMenuItem("Закругленный прямоугольник");
-        //roundRectangular.addActionListener(e -> selectedShape = ShapeType.ROUND_RECTANGULAR);
+        roundRectangular.addActionListener(e -> selectedShape = ShapeType.ROUND_RECTANGULAR);
         shapeMenu.add(roundRectangular);
         group.add(roundRectangular);
 
@@ -71,7 +75,7 @@ public class MenuController {
                 selectedFill.setColor(selectedColor);
                 MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
                 selectedFill.serShape(shape.getShape());
-                MenuObserver.notifyAllSubscribers();
+                menuObserver.notifyAllSubscribers();
             }
         });
 
@@ -119,5 +123,22 @@ public class MenuController {
 
     public FillBehavior selectedFill(){
         return null;
+    }
+
+    public ShapeType getSelectedShape() {
+        return selectedShape;
+    }
+
+    public Color getSelectedColor() {
+        return selectedColor;
+    }
+
+    public FillBehavior getSelectedFill() {
+        return selectedFill;
+    }
+
+    @Autowired
+    public void setMenuObserver(MenuObserver menuObserver) {
+        this.menuObserver = menuObserver;
     }
 }

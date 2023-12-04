@@ -7,6 +7,7 @@ import org.example.controller.menu.MenuSubscriber;
 import org.example.model.Model;
 import org.example.model.MyShape;
 import org.example.model.shape.factory.ShapeType;
+import org.example.model.shape.factory.fill.FillBehavior;
 import org.example.model.shape.factory.fill.NoFill;
 import org.example.view.MyFrame;
 import org.example.view.MyPanel;
@@ -29,16 +30,19 @@ public class Controller implements MenuSubscriber {
 
     private MenuController menuController;
 
+    private MenuObserver menuObserver;
+
 
     @PostConstruct
     public void init() {
-        shape = ShapeType.RECTANGULAR.createShape(Color.BLACK, new NoFill());
         actionDraw.setSampleShape(shape);
         actionDraw.setShape(shape);
         model.addObserver(panel);
         frame.setPanel(panel);
         frame.setJMenuBar(menuController.getMenu());
         frame.revalidate();
+        menuObserver.subscribe(this);
+        menuObserver.notifyAllSubscribers();
         pd = new Point2D[2];
     }
     public void getPointOne(Point2D p){
@@ -84,11 +88,22 @@ public class Controller implements MenuSubscriber {
         this.menuController = menuController;
     }
 
+    @Autowired
+    public void setMenuObserver(MenuObserver menuObserver) {
+        this.menuObserver = menuObserver;
+    }
+
     @Override
     public void notifyUpdate() {
         //this.shape = shapeState.createShape();
+        //shape = ShapeType.RECTANGULAR.createShape(Color.BLACK, new NoFill());
+        //selectedShape selectedColor selectedColor
 
+        ShapeType selectedShape = menuController.getSelectedShape();
+        Color selectedColor = menuController.getSelectedColor();
+        FillBehavior selectedFill = menuController.getSelectedFill();
+        shape = selectedShape.createShape(selectedColor, selectedFill);
         actionDraw.setSampleShape(shape);
-        model.changeShape();
+        model.updateShape();
     }
 }

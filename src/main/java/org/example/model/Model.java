@@ -29,6 +29,11 @@ public class Model extends Observable {
         this.notifyObservers();
     }
 
+    public void updateShape() {
+        this.setChanged();
+        this.notifyObservers();
+    }
+
     public void draw(Graphics2D g) {
         for (MyShape shape : shapeList) {
             shape.draw(g);
