@@ -14,7 +14,6 @@ public class StateDisableUndoDisableRedo extends UndoRedoState{
     @Override
     public UndoRedoState undo() {
         return this;
-
     }
 
     @Override
