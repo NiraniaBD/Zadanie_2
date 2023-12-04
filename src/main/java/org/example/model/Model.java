@@ -46,4 +46,10 @@ public class Model extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    public void removeShape() {
+        shapeList.remove(shapeList.size() - 1);
+        setChanged();
+        notifyObservers();
+    }
 }

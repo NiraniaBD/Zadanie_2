@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 @Component
-public class ActionDraw {
+public class ActionDraw implements MyAction {
     private Model model;
     private MyShape sampleShape;
     private MyShape shape;
@@ -42,5 +42,22 @@ public class ActionDraw {
 
     public void setShape(MyShape shape) {
         this.shape = shape;
+    }
+
+    @Override
+    public void executeCommand() {
+        model.createCurrentShape(shape);
+        model.updateShape();
+    }
+
+    @Override
+    public void unExecuteCommand() {
+        model.removeShape();
+        model.updateShape();
+    }
+
+    @Override
+    public MyAction cloneAction() {
+        return null;
     }
 }
