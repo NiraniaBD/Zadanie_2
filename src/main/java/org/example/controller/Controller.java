@@ -25,11 +25,8 @@ public class Controller implements MenuSubscriber {
     private MyPanel panel;
     private Point2D [] pd;
     private MyShape shape;
-
     private ActionDraw actionDraw;
-
     private MenuController menuController;
-
     private MenuObserver menuObserver;
 
 
