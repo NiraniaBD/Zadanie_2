@@ -25,4 +25,15 @@ public class UndoMachine {
     public void executeRedo(){
         state = state.redo();
     }
+    public void executeUndo(){
+        state = state.undo();
+    }
+
+    public boolean isEnableUndo(){
+        return state.isEnableUndoButton();
+    }
+
+    public boolean isEnableRedo(){
+        return state.isEnableRedoButton();
+    }
 }

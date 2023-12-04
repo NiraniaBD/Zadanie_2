@@ -13,11 +13,22 @@ public class StateDisableUndoDisableRedo extends UndoRedoState{
 
     @Override
     public UndoRedoState undo() {
+        return this;
 
     }
 
     @Override
     public UndoRedoState redo() {
+        return this;
+    }
 
+    @Override
+    public boolean isEnableRedoButton() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnableUndoButton() {
+        return false;
     }
 }

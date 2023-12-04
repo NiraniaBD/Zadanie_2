@@ -35,4 +35,9 @@ public abstract class UndoRedoState {
     public void clearHistory() {
         redoActivityList.clear();
     }
+
+    public abstract boolean isEnableRedoButton();
+    public abstract boolean isEnableUndoButton();
 }
+
+

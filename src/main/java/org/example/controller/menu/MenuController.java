@@ -5,6 +5,7 @@ import org.example.model.shape.factory.ShapeType;
 import org.example.model.shape.factory.fill.Fill;
 import org.example.model.shape.factory.fill.FillBehavior;
 import org.example.model.shape.factory.fill.NoFill;
+import org.example.undoredo.UndoMachine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,14 +17,14 @@ import java.awt.event.ActionListener;
 
 @Component
 public class MenuController {
-
     JMenuBar menu;
-
     private ShapeType selectedShape;
     private Color selectedColor;
     private  FillBehavior selectedFill;
 
     private MenuObserver menuObserver;
+    private UndoMachine undoMachine;
+
 
     @PostConstruct
     public void init() {
@@ -31,9 +32,11 @@ public class MenuController {
         JMenu shapeMenu = createShapeMenu();
         JMenu colorMenu = createColorMenu();
         JMenu fillMenu = createFillMenu();
+        JMenu undoRedoMenu = createUndoRedoMenu();
         menu.add(shapeMenu);
         menu.add(colorMenu);
         menu.add(fillMenu);
+        menu.add(undoRedoMenu);
 
         defaultState();
     }
@@ -181,6 +184,34 @@ public class MenuController {
         shapeMenu.add(green);
         group.add(green);
 
+        return shapeMenu;
+    }
+
+
+    private JMenu createUndoRedoMenu() {
+        JMenu shapeMenu = new JMenu("Undo|Redo");
+        ButtonGroup group = new ButtonGroup();
+        JButton undo1 = new JButton("Undo");
+
+        shapeMenu.add(undo1);
+        group.add(undo1);
+        JButton redo1 = new JButton("Redo");
+        shapeMenu.add(redo1);
+        group.add(redo1);
+
+        undo1.addActionListener(e -> {
+            undoMachine.executeUndo();
+            undo1.setEnabled(undoMachine.isEnableUndo());
+            redo1.setEnabled(undoMachine.isEnableRedo());
+        });
+
+        redo1.addActionListener(e -> {
+            undoMachine.executeRedo();
+            undo1.setEnabled(undoMachine.isEnableUndo());
+            redo1.setEnabled(undoMachine.isEnableRedo());
+        });
+
+        //JToolBar.add(redo1);
         return shapeMenu;
     }
 
