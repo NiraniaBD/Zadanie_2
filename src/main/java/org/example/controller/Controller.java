@@ -1,10 +1,12 @@
 package org.example.controller;
 
 import org.example.controller.action.ActionDraw;
+import org.example.controller.menu.MenuController;
+import org.example.controller.menu.MenuObserver;
+import org.example.controller.menu.MenuSubscriber;
 import org.example.model.Model;
 import org.example.model.MyShape;
 import org.example.model.shape.factory.ShapeType;
-import org.example.model.shape.factory.fill.Fill;
 import org.example.model.shape.factory.fill.NoFill;
 import org.example.view.MyFrame;
 import org.example.view.MyPanel;
@@ -14,10 +16,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 @Component
-public class Controller {
+public class Controller implements MenuSubscriber {
     private Model model;
     private MyFrame frame;
     private MyPanel panel;
@@ -27,7 +28,6 @@ public class Controller {
     private ActionDraw actionDraw;
 
     private MenuController menuController;
-
 
 
     @PostConstruct
@@ -82,5 +82,13 @@ public class Controller {
     @Autowired
     public void setMenuController(MenuController menuController) {
         this.menuController = menuController;
+    }
+
+    @Override
+    public void notifyUpdate() {
+        //this.shape = shapeState.createShape();
+
+        actionDraw.setSampleShape(shape);
+        model.changeShape();
     }
 }

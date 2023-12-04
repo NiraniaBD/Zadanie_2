@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.controller.menu;
 
 import org.example.model.MyShape;
 import org.example.model.shape.factory.ShapeType;
