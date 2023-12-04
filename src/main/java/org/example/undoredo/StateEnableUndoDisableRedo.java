@@ -28,6 +28,6 @@ public class StateEnableUndoDisableRedo extends UndoRedoState{
 
     @Override
     public boolean isEnableUndoButton() {
-        return false;
+        return true;
     }
 }
