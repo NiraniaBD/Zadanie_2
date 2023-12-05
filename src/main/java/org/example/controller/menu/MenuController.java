@@ -31,10 +31,15 @@ public class MenuController {
         JMenu shapeMenu = createShapeMenu();
         JMenu colorMenu = createColorMenu();
         JMenu fillMenu = createFillMenu();
+        JMenu frameFillMenu = createFillBezRamkiMenu();
+        JMenu fillBezZalivki = createFrameBezZalivkiMenu();
+        JMenu frameBezRamki = createFillBezRamkiMenu();
         JMenu undoRedoMenu = createUndoRedoMenu();
         menu.add(shapeMenu);
         menu.add(colorMenu);
         menu.add(fillMenu);
+        menu.add(fillBezZalivki);
+        menu.add(frameFillMenu);
         menu.add(undoRedoMenu);
 
         defaultState();
@@ -75,25 +80,26 @@ public class MenuController {
         });
         shapeMenu.add(ellipse);
         group.add(ellipse);
-        JRadioButtonMenuItem roundRectangular = new
-                JRadioButtonMenuItem("Закругленный прямоугольник");
-        roundRectangular.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                selectedShape = ShapeType.ROUND_RECTANGULAR;
-                selectedShape.createShape(selectedColor,selectedFill);
-                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
-                selectedFill.serShape(shape.getShape());
-                menuObserver.notifyAllSubscribers();
-            }
-        });
-        shapeMenu.add(roundRectangular);
-        group.add(roundRectangular);
+
+//        JRadioButtonMenuItem roundRectangular = new
+//                JRadioButtonMenuItem("Закругленный прямоугольник");
+//        roundRectangular.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent actionEvent) {
+//                selectedShape = ShapeType.ROUND_RECTANGULAR;
+//                selectedShape.createShape(selectedColor,selectedFill);
+//                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+//                selectedFill.serShape(shape.getShape());
+//                menuObserver.notifyAllSubscribers();
+//            }
+//        });
+//        shapeMenu.add(roundRectangular);
+//        group.add(roundRectangular);
 
         return shapeMenu;
     }
 
-    private JMenu createColorMenu(){
+    private JMenu createFillMenu(){
         JMenu shapeMenu = new JMenu("Заливка");
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem zalivka = new JRadioButtonMenuItem("Есть заливка");
@@ -127,7 +133,7 @@ public class MenuController {
         return shapeMenu;
     }
 
-    private JMenu createFillMenu() {
+    private JMenu createColorMenu() {
         JMenu shapeMenu = new JMenu("Цвет");
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem black = new JRadioButtonMenuItem("Черный");
@@ -187,12 +193,88 @@ public class MenuController {
     }
 
 
+
+    private JMenu createFrameBezZalivkiMenu(){
+        JMenu shapeMenu = new JMenu("Цвет рамки");
+        ButtonGroup group = new ButtonGroup();
+        JRadioButtonMenuItem blue = new JRadioButtonMenuItem("Синий");
+        blue.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedColor = Color.BLUE;
+                selectedFill = new NoFill();
+                selectedFill.setColor(selectedColor);
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                menuObserver.notifyAllSubscribers();
+            }
+        });
+        shapeMenu.add(blue);
+        group.add(blue);
+        JRadioButtonMenuItem green = new JRadioButtonMenuItem("Зеленый");
+        green.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedColor = Color.GREEN;
+                selectedFill = new NoFill();
+                selectedFill.setColor(selectedColor);
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                menuObserver.notifyAllSubscribers();
+            }
+        });
+        shapeMenu.add(green);
+        group.add(green);
+
+        return shapeMenu;
+    }
+
+
+    private JMenu createFillBezRamkiMenu(){
+        JMenu shapeMenu = new JMenu("Цвет заливки");
+        ButtonGroup group = new ButtonGroup();
+        JRadioButtonMenuItem blue = new JRadioButtonMenuItem("Синий");
+        blue.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedColor = Color.BLUE;
+                selectedFill = new Fill();
+                selectedFill.setColor(selectedColor);
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                menuObserver.notifyAllSubscribers();
+            }
+        });
+        shapeMenu.add(blue);
+        group.add(blue);
+        JRadioButtonMenuItem green = new JRadioButtonMenuItem("Зеленый");
+        green.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedColor = Color.GREEN;
+                selectedFill = new Fill();
+                selectedFill.setColor(selectedColor);
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                menuObserver.notifyAllSubscribers();
+            }
+        });
+        shapeMenu.add(green);
+        group.add(green);
+
+        return shapeMenu;
+    }
+
+
     private JMenu createUndoRedoMenu() {
         JMenu shapeMenu = new JMenu("Undo|Redo");
         ButtonGroup group = new ButtonGroup();
         JButton undo1 = new JButton("Undo");
-
         shapeMenu.add(undo1);
+
+        //блокирует кнопку
+        //undo1.setEnabled(false);
+
         group.add(undo1);
         JButton redo1 = new JButton("Redo");
         shapeMenu.add(redo1);
@@ -210,7 +292,6 @@ public class MenuController {
             redo1.setEnabled(undoMachine.isEnableRedo());
         });
 
-        //JToolBar.add(redo1);
         return shapeMenu;
     }
 

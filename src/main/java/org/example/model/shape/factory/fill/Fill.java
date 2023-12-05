@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.geom.RectangularShape;
 public class Fill implements FillBehavior, Cloneable {
-
     private Color color;
     private RectangularShape shape;
 
