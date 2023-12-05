@@ -12,13 +12,11 @@ public class StateDisableUndoEnableRedo extends UndoRedoState{
     }
 
     @Override
-    //Я не уверена насчет этого
     public UndoRedoState undo() {
         return this;
     }
 
     @Override
-    //Я не уверена насчет этого
     public UndoRedoState redo() {
         LinkedList<MyAction> activityList = getActivityList();
         LinkedList<MyAction> redoActivityList = getRedoActivityList();
