@@ -24,6 +24,9 @@ public class MenuController {
     private MenuObserver menuObserver;
     private UndoMachine undoMachine;
 
+    //private ShapeType selectedShape1;
+    //private Color selectedColor1;
+    //private  FillBehavior selectedFill1;
 
     @PostConstruct
     public void init() {
@@ -41,14 +44,18 @@ public class MenuController {
         menu.add(fillBezZalivki);
         menu.add(frameFillMenu);
         menu.add(undoRedoMenu);
-
         defaultState();
     }
 
     private void defaultState() {
-        selectedShape = ShapeType.ELLIPSE;
+        selectedShape = ShapeType.RECTANGULAR;
         selectedColor = Color.BLACK;
         selectedFill = new NoFill();
+
+//        selectedShape1 = ShapeType.RECTANGULAR;
+//        selectedColor1 = Color.BLACK;
+//        selectedFill1 = new NoFill();
+
     }
 
     private JMenu createShapeMenu() {
@@ -192,8 +199,6 @@ public class MenuController {
         return shapeMenu;
     }
 
-
-
     private JMenu createFrameBezZalivkiMenu(){
         JMenu shapeMenu = new JMenu("Цвет рамки");
         ButtonGroup group = new ButtonGroup();
@@ -229,7 +234,6 @@ public class MenuController {
         return shapeMenu;
     }
 
-
     private JMenu createFillBezRamkiMenu(){
         JMenu shapeMenu = new JMenu("Цвет заливки");
         ButtonGroup group = new ButtonGroup();
@@ -242,9 +246,17 @@ public class MenuController {
                 selectedFill.setColor(selectedColor);
                 MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
                 selectedFill.serShape(shape.getShape());
+
+//                selectedColor1 = Color.RED;
+//                selectedFill1 = new NoFill();
+//                selectedFill1.setColor(selectedColor1);
+//                MyShape shape1 = selectedShape1.createShape(selectedColor1, selectedFill1);
+//                selectedFill1.serShape(shape1.getShape());
+
                 menuObserver.notifyAllSubscribers();
             }
         });
+
         shapeMenu.add(blue);
         group.add(blue);
         JRadioButtonMenuItem green = new JRadioButtonMenuItem("Зеленый");
@@ -280,6 +292,15 @@ public class MenuController {
         shapeMenu.add(redo1);
         group.add(redo1);
 
+//        undo1.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                undoMachine.executeUndo();
+//                undo1.setEnabled(undoMachine.isEnableUndo());
+//                redo1.setEnabled(undoMachine.isEnableRedo());
+//            }
+//        });
+
         undo1.addActionListener(e -> {
             undoMachine.executeUndo();
             undo1.setEnabled(undoMachine.isEnableUndo());
@@ -295,6 +316,11 @@ public class MenuController {
         return shapeMenu;
     }
 
+
+    @Autowired
+    public MenuController(UndoMachine undoMachine) {
+        this.undoMachine = undoMachine;
+    }
 
     public JMenuBar getMenu() {
         return menu;
@@ -319,6 +345,19 @@ public class MenuController {
     public FillBehavior getSelectedFill() {
         return selectedFill;
     }
+
+
+//    public ShapeType getSelectedShape1() {
+//        return selectedShape1;
+//    }
+//
+//    public Color getSelectedColor1() {
+//        return selectedColor1;
+//    }
+//
+//    public FillBehavior getSelectedFill1() {
+//        return selectedFill1;
+//    }
 
     @Autowired
     public void setMenuObserver(MenuObserver menuObserver) {

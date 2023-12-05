@@ -25,6 +25,7 @@ public class Controller implements MenuSubscriber {
     private MyPanel panel;
     private Point2D [] pd;
     private MyShape shape;
+    private MyShape shape1;
     private ActionDraw actionDraw;
     private MenuController menuController;
     private MenuObserver menuObserver;
@@ -97,6 +98,15 @@ public class Controller implements MenuSubscriber {
         FillBehavior selectedFill = menuController.getSelectedFill();
         shape = selectedShape.createShape(selectedColor, selectedFill);
         actionDraw.setSampleShape(shape);
+
         model.updateShape();
+
+//        ShapeType selectedShape1 = menuController.getSelectedShape1();
+//        Color selectedColor1 = menuController.getSelectedColor1();
+//        FillBehavior selectedFill1 = menuController.getSelectedFill1();
+//        shape1 = selectedShape1.createShape(selectedColor1, selectedFill1);
+//        actionDraw.setSampleShape(shape1);
+//
+//        model.updateShape();
     }
 }
