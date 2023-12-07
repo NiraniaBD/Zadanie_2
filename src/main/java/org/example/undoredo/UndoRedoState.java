@@ -7,8 +7,8 @@ import java.util.LinkedList;
 public abstract class UndoRedoState {
     private UndoRedoStateEnum undoRedoStateEnum;
     private final LinkedList<MyAction> activityList;
-
     private final LinkedList<MyAction> redoActivityList;
+    private static final int MAX_UNDO = 50;
 
     public UndoRedoState(UndoRedoStateEnum undoRedoStateEnum, LinkedList<MyAction> activityList, LinkedList<MyAction> redoActivityList) {
         this.undoRedoStateEnum = undoRedoStateEnum;
@@ -29,15 +29,18 @@ public abstract class UndoRedoState {
     }
 
     public void addAction(MyAction action) {
-
+        //Дописать
+        ///Проверяет превышение максимального размера и добавляет в список undo
+        //клон action
     }
 
     public void clearHistory() {
         redoActivityList.clear();
     }
-
     public abstract boolean isEnableRedoButton();
     public abstract boolean isEnableUndoButton();
+
+
 }
 
 

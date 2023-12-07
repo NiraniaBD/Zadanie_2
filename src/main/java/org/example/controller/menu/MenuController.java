@@ -281,39 +281,46 @@ public class MenuController {
     private JMenu createUndoRedoMenu() {
         JMenu shapeMenu = new JMenu("Undo|Redo");
         ButtonGroup group = new ButtonGroup();
-        JButton undo1 = new JButton("Undo");
-        shapeMenu.add(undo1);
+        JButton undoButton = new JButton("Undo");
+        shapeMenu.add(undoButton);
 
-        //блокирует кнопку
-        //undo1.setEnabled(false);
+        group.add(undoButton);
+        JButton redoButton = new JButton("Redo");
+        shapeMenu.add(redoButton);
+        group.add(redoButton);
 
-        group.add(undo1);
-        JButton redo1 = new JButton("Redo");
-        shapeMenu.add(redo1);
-        group.add(redo1);
-
-//        undo1.addActionListener(new ActionListener() {
+//        undoButton.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //                undoMachine.executeUndo();
-//                undo1.setEnabled(undoMachine.isEnableUndo());
-//                redo1.setEnabled(undoMachine.isEnableRedo());
+//                undoButton.setEnabled(undoMachine.isEnableUndo());
+//                redoButton.setEnabled(undoMachine.isEnableRedo());
 //            }
 //        });
 
-        undo1.addActionListener(e -> {
+        undoButton.addActionListener(e -> {
             undoMachine.executeUndo();
-            undo1.setEnabled(undoMachine.isEnableUndo());
-            redo1.setEnabled(undoMachine.isEnableRedo());
+            undoButton.setEnabled(undoMachine.isEnableUndo());
+            redoButton.setEnabled(undoMachine.isEnableRedo());
         });
 
-        redo1.addActionListener(e -> {
+        redoButton.addActionListener(e -> {
             undoMachine.executeRedo();
-            undo1.setEnabled(undoMachine.isEnableUndo());
-            redo1.setEnabled(undoMachine.isEnableRedo());
+            undoButton.setEnabled(undoMachine.isEnableUndo());
+            redoButton.setEnabled(undoMachine.isEnableRedo());
         });
+
+        //Вызов метода updateUndoRedoButtons делать в контроллере на событие
+        //нажатия мыши (mousePressed) и на события нажатия кнопки (actionListener
+        //кнопок undo и redo)
 
         return shapeMenu;
+    }
+
+    public void updateUndoRedoButtons(){
+        //Дописать
+        //Для JButton с кнопками undo и redo
+        //вызывать метод setEnabled
     }
 
 

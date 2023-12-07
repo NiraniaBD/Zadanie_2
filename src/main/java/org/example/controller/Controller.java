@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.controller.action.ActionDraw;
+import org.example.controller.action.MyAction;
 import org.example.controller.menu.MenuController;
 import org.example.controller.menu.MenuObserver;
 import org.example.controller.menu.MenuSubscriber;
@@ -9,6 +10,8 @@ import org.example.model.MyShape;
 import org.example.model.shape.factory.ShapeType;
 import org.example.model.shape.factory.fill.FillBehavior;
 import org.example.model.shape.factory.fill.NoFill;
+import org.example.undoredo.UndoMachine;
+import org.example.undoredo.UndoRedoState;
 import org.example.view.MyFrame;
 import org.example.view.MyPanel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +28,12 @@ public class Controller implements MenuSubscriber {
     private MyPanel panel;
     private Point2D [] pd;
     private MyShape shape;
-    private MyShape shape1;
     private ActionDraw actionDraw;
     private MenuController menuController;
     private MenuObserver menuObserver;
+    private UndoMachine undoMachine;
 
+    //private MyShape shape1;
 
     @PostConstruct
     public void init() {
@@ -58,6 +62,11 @@ public class Controller implements MenuSubscriber {
 
     public void mousePressed(Point point){
         actionDraw.createShape(point);
+        //Дописать
+        //undoMachine.add(...);
+        //Вызов метода updateUndoRedoButtons делать в контроллере на событие
+        //нажатия мыши (mousePressed) и на события нажатия кнопки (actionListener
+        //кнопок undo и redo)
     }
 
     public void mouseDragged(Point point){
