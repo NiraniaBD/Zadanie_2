@@ -20,6 +20,7 @@ public class MenuController {
     JMenuBar menu;
     private ShapeType selectedShape;
     private Color selectedColor;
+    private Color selectedColorFill;
     private  FillBehavior selectedFill;
     private MenuObserver menuObserver;
     private UndoMachine undoMachine;
@@ -207,8 +208,8 @@ public class MenuController {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 selectedColor = Color.BLUE;
-                selectedFill = new NoFill();
-                selectedFill.setColor(selectedColor);
+                //selectedFill = new NoFill();
+                //selectedFill.setColor(selectedColor);
                 MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
                 selectedFill.serShape(shape.getShape());
                 menuObserver.notifyAllSubscribers();
@@ -221,8 +222,8 @@ public class MenuController {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 selectedColor = Color.GREEN;
-                selectedFill = new NoFill();
-                selectedFill.setColor(selectedColor);
+                //selectedFill = new NoFill();
+                //selectedFill.setColor(selectedColor);
                 MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
                 selectedFill.serShape(shape.getShape());
                 menuObserver.notifyAllSubscribers();
@@ -241,9 +242,9 @@ public class MenuController {
         blue.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                selectedColor = Color.BLUE;
+                //selectedColor = Color.BLUE;
                 selectedFill = new Fill();
-                selectedFill.setColor(selectedColor);
+                selectedFill.setColor(Color.BLUE);
                 MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
                 selectedFill.serShape(shape.getShape());
 
@@ -263,9 +264,9 @@ public class MenuController {
         green.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                selectedColor = Color.GREEN;
+                //selectedColor = Color.GREEN;
                 selectedFill = new Fill();
-                selectedFill.setColor(selectedColor);
+                selectedFill.setColor(Color.GREEN);
                 MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
                 selectedFill.serShape(shape.getShape());
                 menuObserver.notifyAllSubscribers();

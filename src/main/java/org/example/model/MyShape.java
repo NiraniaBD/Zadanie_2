@@ -43,8 +43,8 @@ public class MyShape implements Cloneable {
         this.color = color;
         this.shape = shape;
         this.fb = fb;
-        this.fb.serShape(shape);
-        this.fb.setColor(color);
+        //this.fb.serShape(shape);
+        //this.fb.setColor(color);
     }
 
 //    public void setFb(FillBehavior fb) {
@@ -55,6 +55,8 @@ public class MyShape implements Cloneable {
 
     void draw(Graphics2D g) {
         fb.draw(g);
+        g.setPaint(color);
+        g.draw(shape);
     }
 
     @Override

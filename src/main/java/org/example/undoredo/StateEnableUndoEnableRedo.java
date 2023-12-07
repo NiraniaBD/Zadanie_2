@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class StateEnableUndoEnableRedo extends UndoRedoState{
     public StateEnableUndoEnableRedo(LinkedList<MyAction> actionLinkedList, LinkedList<MyAction> redoActivityList) {
-        super(UndoRedoStateEnum.DUndoDRedo,
+        super(UndoRedoStateEnum.EUndoERedo,
                 actionLinkedList,
                 redoActivityList);
     }
