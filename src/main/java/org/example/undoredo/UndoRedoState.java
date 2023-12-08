@@ -29,9 +29,10 @@ public abstract class UndoRedoState {
     }
 
     public void addAction(MyAction action) {
-        //Дописать
-        ///Проверяет превышение максимального размера и добавляет в список undo
-        //клон action
+        if(activityList.size()>=MAX_UNDO){
+            activityList.removeFirst();
+        }
+        activityList.add(action);
     }
 
     public void clearHistory() {

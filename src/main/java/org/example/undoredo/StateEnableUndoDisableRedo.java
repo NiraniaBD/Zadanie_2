@@ -19,9 +19,10 @@ public class StateEnableUndoDisableRedo extends UndoRedoState{
         MyAction action = activityList.pollLast();
         if (action != null) {
             redoActivityList.add(action);
+            action.unExecuteCommand();
         }
         return activityList.size() > 0
-                ? this
+                ? new StateEnableUndoEnableRedo(getActivityList(),getRedoActivityList())
                 : new StateDisableUndoEnableRedo(getActivityList(), getRedoActivityList());
     }
 

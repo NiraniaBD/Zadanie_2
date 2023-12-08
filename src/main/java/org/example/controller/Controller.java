@@ -62,11 +62,7 @@ public class Controller implements MenuSubscriber {
 
     public void mousePressed(Point point){
         actionDraw.createShape(point);
-        //Дописать
-        //undoMachine.add(...);
-        //Вызов метода updateUndoRedoButtons делать в контроллере на событие
-        //нажатия мыши (mousePressed) и на события нажатия кнопки (actionListener
-        //кнопок undo и redo)
+        undoMachine.add(actionDraw.cloneAction());
     }
 
     public void mouseDragged(Point point){
@@ -98,6 +94,10 @@ public class Controller implements MenuSubscriber {
     @Autowired
     public void setMenuObserver(MenuObserver menuObserver) {
         this.menuObserver = menuObserver;
+    }
+    @Autowired
+    public void setUndoMachine(UndoMachine undoMachine) {
+        this.undoMachine = undoMachine;
     }
 
     @Override

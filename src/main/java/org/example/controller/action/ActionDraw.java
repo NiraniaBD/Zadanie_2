@@ -58,6 +58,11 @@ public class ActionDraw implements MyAction {
 
     @Override
     public MyAction cloneAction() {
-        return null;
+        ActionDraw cloneAction = new ActionDraw();
+        cloneAction.shape=shape;
+        cloneAction.model=model;
+        cloneAction.sampleShape=sampleShape;
+        cloneAction.p=p;
+        return cloneAction;
     }
 }
