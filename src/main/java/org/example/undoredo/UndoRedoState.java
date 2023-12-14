@@ -28,12 +28,6 @@ public abstract class UndoRedoState {
         return redoActivityList;
     }
 
-//    public void addAction(MyAction action) {
-//        if(activityList.size()>=MAX_UNDO){
-//            activityList.removeFirst();
-//        }
-//        activityList.add(action);
-//    }
     public void addAction(MyAction action) {
         System.out.println("111111111111111111111");
         if(activityList.size()>=MAX_UNDO){

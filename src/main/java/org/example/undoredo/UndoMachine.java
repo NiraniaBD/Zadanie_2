@@ -18,8 +18,6 @@ public class UndoMachine {
 
     public void add(MyAction action){
         state.addAction(action);
-//        state.clearHistory();
-//        state = new StateEnableUndoDisableRedo(state.getActivityList(), state.getRedoActivityList());
         state = new StateEnableUndoDisableRedo(
                 state.getActivityList(), state.getRedoActivityList());
     }
