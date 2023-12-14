@@ -19,11 +19,9 @@ public class StateDisableUndoEnableRedo extends UndoRedoState{
     @Override
     public UndoRedoState redo() {
         MakeAShiftRedo();
-        if (getRedoActivityList().isEmpty()) { //если список вперёд пустой
-            System.out.println("REDO - из DE переход в ED");
+        if (getRedoActivityList().isEmpty()) {
             return (new StateEnableUndoDisableRedo(getActivityList(), getRedoActivityList()));
         } else{
-            System.out.println("REDO - из DE переход в EE");
             return (new StateEnableUndoEnableRedo(getActivityList(), getRedoActivityList()));
         }
     }

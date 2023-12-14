@@ -14,11 +14,9 @@ public class StateEnableUndoDisableRedo extends UndoRedoState{
     @Override
     public UndoRedoState undo() {
         MakeAShiftUndo ();
-        if (getActivityList().isEmpty()) { //если конец списка слева
-            System.out.println("REDO - из ED переход в DE");
+        if (getActivityList().isEmpty()) {
             return (new StateDisableUndoEnableRedo(getActivityList(),getRedoActivityList()));
-        } else { //если слева не конец, то сейчас центр undo/redo
-            System.out.println("REDO - из ED переход в EE");
+        } else {
             return (new StateEnableUndoEnableRedo(getActivityList(),getRedoActivityList()));
         }
     }
