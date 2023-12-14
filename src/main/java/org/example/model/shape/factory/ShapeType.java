@@ -18,19 +18,6 @@ public enum ShapeType {
         public MyShape createShape(Color color, FillBehavior fillBehavior)  {
         return new MyShape(color, new Ellipse2D.Double(), fillBehavior);
         }
-
-    },ROUND_RECTANGULAR {
-        @Override
-        public MyShape createShape(Color color, FillBehavior fillBehavior)  {
-        return new MyShape( color, new RoundRectangle2D.Double(), fillBehavior);
-        }
-
-    }, ARC2D {
-        @Override
-        public MyShape createShape(Color color, FillBehavior fillBehavior)  {
-        return new MyShape(color, new Arc2D.Double(), fillBehavior);
-        }
-
     };
 
     public abstract MyShape createShape(Color color, FillBehavior fillBehavior);
