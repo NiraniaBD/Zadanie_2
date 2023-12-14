@@ -24,11 +24,9 @@ public class UndoMachine {
 
     public void executeRedo(){
         state = state.redo();
-        System.out.println("press redo, state = " + state.getClass());
     }
     public void executeUndo(){
         state = state.undo();
-        System.out.println("press undo, state = " + state.getClass());
     }
 
     public boolean isEnableUndo(){

@@ -220,15 +220,6 @@ public class MenuController {
         shapeMenu.add(redoButton);
         group.add(redoButton);
 
-//        undoButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                undoMachine.executeUndo();
-//                undoButton.setEnabled(undoMachine.isEnableUndo());
-//                redoButton.setEnabled(undoMachine.isEnableRedo());
-//            }
-//        });
-
         undoButton.addActionListener(e -> {
             undoMachine.executeUndo();
             undoButton.setEnabled(undoMachine.isEnableUndo());
@@ -241,18 +232,7 @@ public class MenuController {
             redoButton.setEnabled(undoMachine.isEnableRedo());
         });
 
-        //Вызов метода updateUndoRedoButtons делать в контроллере на событие
-        //нажатия мыши (mousePressed) и на события нажатия кнопки (actionListener
-        //кнопок undo и redo)
-
         return shapeMenu;
-    }
-
-    public void updateUndoRedoButtons(){
-
-        //Дописать
-        //Для JButton с кнопками undo и redo
-        //вызывать метод setEnabled
     }
 
 
@@ -263,14 +243,6 @@ public class MenuController {
 
     public JMenuBar getMenu() {
         return menu;
-    }
-
-    public Color selectedColor(){
-        return null;
-    }
-
-    public FillBehavior selectedFill(){
-        return null;
     }
 
     public ShapeType getSelectedShape() {
@@ -284,19 +256,6 @@ public class MenuController {
     public FillBehavior getSelectedFill() {
         return selectedFill;
     }
-
-
-//    public ShapeType getSelectedShape1() {
-//        return selectedShape1;
-//    }
-//
-//    public Color getSelectedColor1() {
-//        return selectedColor1;
-//    }
-//
-//    public FillBehavior getSelectedFill1() {
-//        return selectedFill1;
-//    }
 
     @Autowired
     public void setMenuObserver(MenuObserver menuObserver) {
