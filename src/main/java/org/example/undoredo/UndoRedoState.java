@@ -28,12 +28,32 @@ public abstract class UndoRedoState {
         return redoActivityList;
     }
 
+//    public void addAction(MyAction action) {
+//        if(activityList.size()>=MAX_UNDO){
+//            activityList.removeFirst();
+//        }
+//        activityList.add(action);
+//    }
     public void addAction(MyAction action) {
+        System.out.println("111111111111111111111");
         if(activityList.size()>=MAX_UNDO){
             activityList.removeFirst();
         }
         activityList.add(action);
+        redoActivityList.clear();
+}
+    public void MakeAShiftUndo(){
+        MyAction action = activityList.pollLast();
+        redoActivityList.add(action);
+        action.unExecuteCommand();
     }
+
+    public void MakeAShiftRedo(){
+        MyAction action = redoActivityList.pollLast();
+        activityList.add(action);
+        action.executeCommand();
+    }
+
 
     public void clearHistory() {
         redoActivityList.clear();
