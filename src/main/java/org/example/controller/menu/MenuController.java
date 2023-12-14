@@ -205,6 +205,45 @@ public class MenuController {
         shapeMenu.add(green);
         group.add(green);
 
+        JRadioButtonMenuItem red = new JRadioButtonMenuItem("Красный");
+        red.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedColor = Color.RED;
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                menuObserver.notifyAllSubscribers();
+            }
+        });
+        shapeMenu.add(red);
+        group.add(red);
+
+        JRadioButtonMenuItem black = new JRadioButtonMenuItem("Черный");
+        black.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedColor = Color.BLACK;
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                menuObserver.notifyAllSubscribers();
+            }
+        });
+        shapeMenu.add(black);
+        group.add(black);
+
+        JRadioButtonMenuItem yellow = new JRadioButtonMenuItem("Желтый");
+        yellow.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                selectedColor = Color.YELLOW;
+                MyShape shape = selectedShape.createShape(selectedColor, selectedFill);
+                selectedFill.serShape(shape.getShape());
+                menuObserver.notifyAllSubscribers();
+            }
+        });
+        shapeMenu.add(yellow);
+        group.add(yellow);
+
         return shapeMenu;
     }
 

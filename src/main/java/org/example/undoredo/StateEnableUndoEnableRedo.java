@@ -14,7 +14,6 @@ public class StateEnableUndoEnableRedo extends UndoRedoState{
     @Override
     public UndoRedoState undo() {
         MakeAShiftUndo ();
-        System.out.println("getActivityList().isEmpty(): " + getActivityList().isEmpty() );
         if (getActivityList().isEmpty() ) {
             return (new StateDisableUndoEnableRedo(getActivityList(),getRedoActivityList()));
         } else {
