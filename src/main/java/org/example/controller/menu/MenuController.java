@@ -25,10 +25,6 @@ public class MenuController {
     private MenuObserver menuObserver;
     private UndoMachine undoMachine;
 
-    //private ShapeType selectedShape1;
-    //private Color selectedColor1;
-    //private  FillBehavior selectedFill1;
-
     @PostConstruct
     public void init() {
         menu = new JMenuBar();
